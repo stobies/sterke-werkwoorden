@@ -4,1259 +4,1259 @@ window.OwList = [
         "bakte",
         "bakten",
         "gebakken",
-        "bake, fry, cook"
+        {"en": "bake, fry, cook", "de": "backen, braten, kochen"}
     ],
     [
         "bannen",
         "bande",
         "banden",
         "gebannen",
-        "ban, exile, discard"
+        {"en": "ban, exile, discard", "de": "verbannen, verdammen, ausschließen"}
     ],
     [
         "barsten",
         "barstte",
         "barstten",
         "gebarsten",
-        "burst, crack, break"
+        {"en": "burst, crack, break", "de": "platzen, reißen, brechen"}
     ],
     [
         "bederven",
         "bedierf",
         "bedierven",
         "bedorven",
-        "spoil, rot, injure"
+        {"en": "spoil, rot, injure", "de": "verderben, verfaulen, beschädigen"}
     ],
     [
         "bedriegen",
         "bedroog",
         "bedrogen",
         "bedrogen",
-        "deceive, cheat, betray"
+        {"en": "deceive, cheat, betray", "de": "betrügen, hintergehen, täuschen"}
     ],
     [
         "beginnen",
         "begon",
         "begonnen",
         "begonnen",
-        "begin, start, commence"
+        {"en": "begin, start, commence", "de": "beginnen, anfangen, starten"}
     ],
     [
         "behangen",
         "behangde",
         "behangden",
         "behangen",
-        "decorate, hang, paper"
+        {"en": "decorate, hang, paper", "de": "behängen, tapezieren, schmücken"}
     ],
     [
         "bergen",
         "borg",
         "borgen",
         "geborgen",
-        "rescue, save, stow"
+        {"en": "rescue, save, stow", "de": "bergen, retten, verstauen"}
     ],
     [
         "bevelen",
         "beval",
         "bevalen",
         "bevolen",
-        "order, command, tell"
+        {"en": "order, command, tell", "de": "befehlen, anordnen, gebieten"}
     ],
     [
         "bezwijken",
         "bezweek",
         "bezweken",
         "bezweken",
-        "succumb"
+        {"en": "succumb", "de": "erliegen, zusammenbrechen, unterliegen"}
     ],
     [
         "bidden",
         "bad",
         "baden",
         "gebeden",
-        "pray, beseech, beg"
+        {"en": "pray, beseech, beg", "de": "beten, flehen, bitten"}
     ],
     [
         "bieden",
         "bood",
         "boden",
         "geboden",
-        "bid, offer, propose"
+        {"en": "bid, offer, propose", "de": "bieten, anbieten, darbringen"}
     ],
     [
         "bijten",
         "beet",
         "beten",
         "gebeten",
-        "bite, corrode, sting"
+        {"en": "bite, corrode, sting", "de": "beißen, ätzen, stechen"}
     ],
     [
         "binden",
         "bond",
         "bonden",
         "gebonden",
-        "tie, bind, tether"
+        {"en": "tie, bind, tether", "de": "binden, fesseln, knüpfen"}
     ],
     [
         "blazen",
         "blies",
         "bliezen",
         "geblazen",
-        "blow, wind, puff"
+        {"en": "blow, wind, puff", "de": "blasen, pusten, wehen"}
     ],
     [
         "blijken",
         "bleek",
         "bleken",
         "gebleken",
-        "prove, appear, emerge"
+        {"en": "prove, appear, emerge", "de": "sich zeigen, erscheinen, herausstellen"}
     ],
     [
         "blijven",
         "bleef",
         "bleven",
         "gebleven",
-        "stay, remain, keep"
+        {"en": "stay, remain, keep", "de": "bleiben, verweilen, weitermachen"}
     ],
     [
         "blinken",
         "blonk",
         "blonken",
         "geblonken",
-        "shine, glisten, glitter"
+        {"en": "shine, glisten, glitter", "de": "glänzen, funkeln, blitzen"}
     ],
     [
         "braden",
         "braadde",
         "braadden",
         "gebraden",
-        "roast, fry, bake"
+        {"en": "roast, fry, bake", "de": "braten, rösten, garen"}
     ],
     [
         "breken",
         "brak",
         "braken",
         "gebroken",
-        "break, refract, bust"
+        {"en": "break, refract, bust", "de": "brechen, reißen, splittern"}
     ],
     [
         "brengen",
         "bracht",
         "brachten",
         "gebracht",
-        "bring, apply, carry"
+        {"en": "bring, apply, carry", "de": "bringen, tragen, befördern"}
     ],
     [
         "brouwen",
         "brouwde",
         "brouwden",
         "gebrouwen",
-        "brew"
+        {"en": "brew", "de": "brauen, gären, brüten"}
     ],
     [
         "buigen",
         "boog",
         "bogen",
         "gebogen",
-        "bend, bow, flex"
+        {"en": "bend, bow, flex", "de": "biegen, beugen, krümmen"}
     ],
     [
         "denken",
         "dacht",
         "dachten",
         "gedacht",
-        "think, believe, make"
+        {"en": "think, believe, make", "de": "denken, glauben, meinen"}
     ],
     [
         "dingen naar",
         "dong naar",
         "dongen naar",
         "gedongen naar",
-        "aspire, hope for"
+        {"en": "aspire, hope for", "de": "streben nach, hoffen auf"}
     ],
     [
         "dragen",
         "droeg",
         "droegen",
         "gedragen",
-        "carry, bear, wear"
+        {"en": "carry, bear, wear", "de": "tragen, ertragen, kleiden"}
     ],
     [
         "drijven",
         "dreef",
         "dreven",
         "gedreven",
-        "float, drive, push"
+        {"en": "float, drive, push", "de": "treiben, fahren, antreiben"}
     ],
     [
         "dringen",
         "drong",
         "drongen",
         "gedrongen",
-        "push, squeeze, thrust"
+        {"en": "push, squeeze, thrust", "de": "drängen, drücken, vordringen"}
     ],
     [
         "drinken",
         "dronk",
         "dronken",
         "gedronken",
-        "drink"
+        {"en": "drink", "de": "trinken, saufen"}
     ],
     [
         "druipen",
         "droop",
         "dropen",
         "gedropen",
-        "drip"
+        {"en": "drip", "de": "tropfen, tröpfeln"}
     ],
     [
         "duiken",
         "dook",
         "doken",
         "gedoken",
-        "dive, plunge, duck"
+        {"en": "dive, plunge, duck", "de": "tauchen, untertauchen, ducken"}
     ],
     [
         "dwingen",
         "dwong",
         "dwongen",
         "gedwongen",
-        "compel, force, coerce"
+        {"en": "compel, force, coerce", "de": "zwingen, nötigen, erpressen"}
     ],
     [
         "eten",
         "at",
         "aten",
         "gegeten",
-        "eat, food, meal"
+        {"en": "eat, food, meal", "de": "essen, fressen"}
     ],
     [
         "fluiten",
         "floot",
         "floten",
         "gefloten",
-        "whistle, hiss, flute"
+        {"en": "whistle, hiss, flute", "de": "pfeifen, zischen"}
     ],
     [
         "gelden",
         "gold",
         "golden",
         "gegolden",
-        "consider, deem, pertain"
+        {"en": "consider, deem, pertain", "de": "gelten, bedeuten, betreffen"}
     ],
     [
         "genezen",
         "genas",
         "genazen",
         "genezen",
-        "cure, heal, recover"
+        {"en": "cure, heal, recover", "de": "heilen, genesen, wiederherstellen"}
     ],
     [
         "genieten",
         "genoot",
         "genoten",
         "genoten",
-        "enjoy, have, receive"
+        {"en": "enjoy, have, receive", "de": "genießen, haben, erhalten"}
     ],
     [
         "geven",
         "gaf",
         "gaven",
         "gegeven",
-        "give, cast, donate"
+        {"en": "give, cast, donate", "de": "geben, schenken, werfen"}
     ],
     [
         "gieten",
         "goot",
         "goten",
         "gegoten",
-        "pour, irrigate, cast"
+        {"en": "pour, irrigate, cast", "de": "gießen, gießen, fließen"}
     ],
     [
         "glijden",
         "gleed",
         "gleden",
         "gegleden",
-        "slide, glide, slip"
+        {"en": "slide, glide, slip", "de": "gleiten, rutschen, schleudern"}
     ],
     [
         "glimmen",
         "glom",
         "glommen",
         "geglommen",
-        "luster, sheen, shimmer"
+        {"en": "luster, sheen, shimmer", "de": "glimmen, leuchten, schimmern"}
     ],
     [
         "graven",
         "groef",
         "groeven",
         "gegraven",
-        "dig, spade, drill"
+        {"en": "dig, spade, drill", "de": "graben, schaufeln, bohren"}
     ],
     [
         "grijpen",
         "greep",
         "grepen",
         "gegrepen",
-        "seize, grab, grasp"
+        {"en": "seize, grab, grasp", "de": "greifen, packen, fassen"}
     ],
     [
         "hangen",
         "hing",
         "hingen",
         "gehangen",
-        "hang, depend, droop"
+        {"en": "hang, depend, droop", "de": "hängen, baumeln, herunterhängen"}
     ],
     [
         "heffen",
         "hief",
         "hieven",
         "geheven",
-        "raise, lever, lift"
+        {"en": "raise, lever, lift", "de": "heben, aufheben, anheben"}
     ],
     [
         "helpen",
         "hielp",
         "hielpen",
         "geholpen",
-        "help, aid, assist"
+        {"en": "help, aid, assist", "de": "helfen, unterstützen, beistehen"}
     ],
     [
         "heten",
         "heette",
         "heetten",
         "geheten",
-        "call, be called, name"
+        {"en": "call, be called, name", "de": "heißen, genannt werden, nennen"}
     ],
     [
         "hijsen",
         "hees",
         "hesen",
         "gehesen",
-        "hoist, heft, hoist up"
+        {"en": "hoist, heft, hoist up", "de": "hochziehen, herunterziehen, winden"}
     ],
     [
         "hoeven",
         "hoefde",
         "hoefden",
         "gehoeven",
-        "need, require, brauchen"
+        {"en": "need, require, brauchen", "de": "brauchen, müssen, nötig haben"}
     ],
     [
         "houden",
         "hield",
         "hielden",
         "gehouden",
-        "keep, hold, judge"
+        {"en": "keep, hold, judge", "de": "halten, festhalten, bewahren"}
     ],
     [
         "houwen",
         "houwde",
         "houwden",
         "gehouwen",
-        "hit, strike, hew"
+        {"en": "hit, strike, hew", "de": "hauen, schlagen, zwacken"}
     ],
     [
         "jagen",
         "joeg",
         "joegen",
         "gejaagd",
-        "hunt, chase, grub"
+        {"en": "hunt, chase, grub", "de": "jagen, treiben, hetzen"}
     ],
     [
         "kiezen",
         "koos",
         "kozen",
         "gekozen",
-        "choose, pick, elect"
+        {"en": "choose, pick, elect", "de": "wählen, auswählen, aussuchen"}
     ],
     [
         "kijken",
         "keek",
         "keken",
         "gekeken",
-        "look, watch, view"
+        {"en": "look, watch, view", "de": "schauen, blicken, anschauen"}
     ],
     [
         "klimmen",
         "klom",
         "klommen",
         "geklommen",
-        "climb, ascend, rise"
+        {"en": "climb, ascend, rise", "de": "klettern, erklimmen, aufsteigen"}
     ],
     [
         "klinken",
         "klonk",
         "klonken",
         "geklonken",
-        "sound, ring, rivet"
+        {"en": "sound, ring, rivet", "de": "klingen, ertönen, tönen"}
     ],
     [
         "kluiven",
         "kloof",
         "kloven",
         "gekloven",
-        "gnaw, nibble"
+        {"en": "gnaw, nibble", "de": "nagen, abnagen, knabbern"}
     ],
     [
         "knijpen",
         "kneep",
         "knepen",
         "geknepen",
-        "pinch, squeeze, tweak"
+        {"en": "pinch, squeeze, tweak", "de": "kneifen, kneipen, pressen"}
     ],
     [
         "kopen",
         "kocht",
         "kochten",
         "gekocht",
-        "buy, purchase, get"
+        {"en": "buy, purchase, get", "de": "kaufen, erwerben, einkaufen"}
     ],
     [
         "krijgen",
         "kreeg",
         "kregen",
         "gekregen",
-        "get, receive, have"
+        {"en": "get, receive, have", "de": "bekommen, erhalten, kriegen"}
     ],
     [
         "krimpen",
         "kromp",
         "krompen",
         "gekrompen",
-        "shrink, compress, shrunken"
+        {"en": "shrink, compress, shrunken", "de": "schrumpfen, einlaufen, zusammenziehen"}
     ],
     [
         "kruipen",
         "kroop",
         "kropen",
         "gekropen",
-        "creep, crawl, grovel"
+        {"en": "creep, crawl, grovel", "de": "kriechen, krabbeln, robben"}
     ],
     [
         "lachen",
         "lachte",
         "lachten",
         "gelachen",
-        "laugh, laughter, smile"
+        {"en": "laugh, laughter, smile", "de": "lachen, lächeln, grinsen"}
     ],
     [
         "laden",
         "laadde",
         "laadden",
         "geladen",
-        "load, charge, burden"
+        {"en": "load, charge, burden", "de": "laden, beladen, aufladen"}
     ],
     [
         "laten",
         "liet",
         "lieten",
         "gelaten",
-        "let, leave, make"
+        {"en": "let, leave, make", "de": "lassen, zulassen, machen"}
     ],
     [
         "lezen",
         "las",
         "lazen",
         "gelezen",
-        "read, reading, skim"
+        {"en": "read, reading, skim", "de": "lesen, durchlesen, vorlesen"}
     ],
     [
         "liegen",
         "loog",
         "logen",
         "gelogen",
-        "lie, tell a lie, fib"
+        {"en": "lie, tell a lie, fib", "de": "lügen, schwindeln, täuschen"}
     ],
     [
         "liggen",
         "lag",
         "lagen",
         "gelegen",
-        "lie, sit, stand"
+        {"en": "lie, sit, stand", "de": "liegen, ruhen, sich befinden"}
     ],
     [
         "lijden",
         "leed",
         "leden",
         "geleden",
-        "suffer, anguish"
+        {"en": "suffer, anguish", "de": "leiden, dulden, ertragen"}
     ],
     [
         "lijken",
         "leek",
         "leken",
         "geleken",
-        "seem, appear, resemble"
+        {"en": "seem, appear, resemble", "de": "scheinen, aussehen, ähneln"}
     ],
     [
         "lopen",
         "liep",
         "liepen",
         "gelopen",
-        "walk, run, go"
+        {"en": "walk, run, go", "de": "laufen, gehen, rennen"}
     ],
     [
         "malen",
         "maalde",
         "maalden",
         "gemalen",
-        "grind, mill, pulverize"
+        {"en": "grind, mill, pulverize", "de": "mahlen, schleifen, pulverisieren"}
     ],
     [
         "melken",
         "molk",
         "molken",
         "gemolken",
-        "milk"
+        {"en": "milk", "de": "melken, ausmelken"}
     ],
     [
         "meten",
         "mat",
         "maten",
         "gemeten",
-        "measure, gauge, compute"
+        {"en": "measure, gauge, compute", "de": "messen, abmessen, ausmessen"}
     ],
     [
         "mijden",
         "meed",
         "meden",
         "gemeden",
-        "avoid, evade, avert"
+        {"en": "avoid, evade, avert", "de": "meiden, ausweichen, vermeiden"}
     ],
     [
         "moeten",
         "moest",
         "moesten",
         "gemoeten",
-        "must"
+        {"en": "must", "de": "müssen, sollen, vorbeigehen"}
     ],
     [
         "nemen",
         "nam",
         "namen",
         "genomen",
-        "take, get, consider"
+        {"en": "take, get, consider", "de": "nehmen, ergreifen, auffassen"}
     ],
     [
         "nijgen",
         "neeg",
         "negen",
         "genegen",
-        "curtsy, curtsey, bow"
+        {"en": "curtsy, curtsey, bow", "de": "knicksen, sich verneigen"}
     ],
     [
         "ontginnen",
         "ontgon",
         "ontgonnen",
         "ontgonnen",
-        "mine, cultivate, develop"
+        {"en": "mine, cultivate, develop", "de": "ausbeuten, kultivieren, urbar machen"}
     ],
     [
         "ontluiken",
         "ontlook",
         "ontloken",
         "ontloken",
-        "sprout, bud, arise"
+        {"en": "sprout, bud, arise", "de": "erblühen, knospen, erblühen"}
     ],
     [
         "pluizen",
         "ploos",
         "plozen",
         "geplozen",
-        "pick, pill"
+        {"en": "pick, pill", "de": "zupfen, auszupfen, rupfen"}
     ],
     [
         "prijzen",
         "prees",
         "prezen",
         "geprezen",
-        "praise, laud, commend"
+        {"en": "praise, laud, commend", "de": "preisen, loben, rühmen"}
     ],
     [
         "raden",
         "raadde",
         "raadden",
         "geraden",
-        "guess, advise, imagine"
+        {"en": "guess, advise, imagine", "de": "raten, mageln, vorschlag"}
     ],
     [
         "verraden",
         "verried",
         "verrieden",
         "verraden",
-        "betray, traitor, burn"
+        {"en": "betray, traitor, burn", "de": "verraten, ausplaudern, brennen"}
     ],
     [
         "rijden",
         "reed",
         "reden",
         "gereden",
-        "ride, drive, travel"
+        {"en": "ride, drive, travel", "de": "fahren, reiten, fahren"}
     ],
     [
         "rijgen",
         "reeg",
         "regen",
         "geregen",
-        "string, thread, catenate"
+        {"en": "string, thread, catenate", "de": "reihen, aufziehen, aufreihen"}
     ],
     [
         "rijten",
         "reet",
         "reten",
         "gereten",
-        "rip, tear"
+        {"en": "rip, tear", "de": "reißen, zerreißen, aufreißen"}
     ],
     [
         "rijzen",
         "rees",
         "rezen",
         "gerezen",
-        "rise, ascend, arise"
+        {"en": "rise, ascend, arise", "de": "aufsteigen, aufzüchten, sich erheben"}
     ],
     [
         "roepen",
         "riep",
         "riepen",
         "geroepen",
-        "call, shout, cry"
+        {"en": "call, shout, cry", "de": "rufen, schreien, holen"}
     ],
     [
         "ruiken",
         "rook",
         "roken",
         "geroken",
-        "smell, reek, scent"
+        {"en": "smell, reek, scent", "de": "riechen, duften, stinken"}
     ],
     [
         "scheiden",
         "scheidde",
         "scheidden",
         "gescheiden",
-        "separate, dissociate, divide"
+        {"en": "separate, dissociate, divide", "de": "trennen, scheiden, teilen"}
     ],
     [
         "schelden",
         "schold",
         "scholden",
         "gescholden",
-        "swear, scold, scuffle"
+        {"en": "swear, scold, scuffle", "de": "fluchen, schelten, zanken"}
     ],
     [
         "schenden",
         "schond",
         "schonden",
         "geschonden",
-        "violate, deface, profane"
+        {"en": "violate, deface, profane", "de": "schänden, entehren, verletzen"}
     ],
     [
         "schenken",
         "schonk",
         "schonken",
         "geschonken",
-        "pour, give, donate"
+        {"en": "pour, give, donate", "de": "schenken, eingießen, verabfolgen"}
     ],
     [
         "scheppen",
         "schiep",
         "schiepen",
         "geschapen",
-        "create, shovel, produce"
+        {"en": "create, shovel, produce", "de": "schaffen, schöpfen, schaufeln"}
     ],
     [
         "scheren",
         "scheerde",
         "scheerden",
         "geschoren",
-        "shave, shear, skim"
+        {"en": "shave, shear, skim", "de": "scheren, rasieren, scheren"}
     ],
     [
         "schieten",
         "schoot",
         "schoten",
         "geschoten",
-        "shoot, fire, boot"
+        {"en": "shoot, fire, boot", "de": "schießen, schießen, vorschießen"}
     ],
     [
         "schijnen",
         "scheen",
         "schenen",
         "geschenen",
-        "seem, shine, appear"
+        {"en": "seem, shine, appear", "de": "scheinen, leuchten, glänzen"}
     ],
     [
         "schijten",
         "scheet",
         "scheten",
         "gescheten",
-        "shit, defecate, crap"
+        {"en": "shit, defecate, crap", "de": "scheißen, koten, defäkieren"}
     ],
     [
         "schrijven",
         "schreef",
         "schreven",
         "geschreven",
-        "write"
+        {"en": "write", "de": "schreiben, aufschreiben, verfassen"}
     ],
     [
         "schrikken",
         "schrok",
         "schrokken",
         "geschrokken",
-        "scare, startle, harrow"
+        {"en": "scare, startle, harrow", "de": "erschrecken, auffahren, schrecken"}
     ],
     [
         "schuilen",
         "school",
         "scholen",
         "gescholen",
-        "lurk, shelter, hide"
+        {"en": "lurk, shelter, hide", "de": "Unterschlupf, Zuflucht, verstecken"}
     ],
     [
         "schuiven",
         "schoof",
         "schoven",
         "geschoven",
-        "shove, slide, slip"
+        {"en": "shove, slide, slip", "de": "schieben, verschieben, dahinschieben"}
     ],
     [
         "slapen",
         "sliep",
         "sliepen",
         "geslapen",
-        "sleep"
+        {"en": "sleep", "de": "schlafen, ruhen, schlummern"}
     ],
     [
         "slijpen",
-        "sleep",
+        {"en": "sleep", "de": "schlafen, ruhen, schlummern"},
         "slepen",
         "geslepen",
-        "sharpen, cut, polish"
+        {"en": "sharpen, cut, polish", "de": "schleifen, wetzen, polieren"}
     ],
     [
         "slijten",
         "sleet",
         "sleten",
         "gesleten",
-        "use up, wear away, wear off"
+        {"en": "use up, wear away, wear off", "de": "abnutzen, verbrauchen, schleißen"}
     ],
     [
         "slinken",
         "slonk",
         "slonken",
         "geslonken",
-        "shrink, shrunken, decrease"
+        {"en": "shrink, shrunken, decrease", "de": "schrumpfen, schwinden, abnehmen"}
     ],
     [
         "sluipen",
         "sloop",
         "slopen",
         "geslopen",
-        "steal, sneak, slink"
+        {"en": "steal, sneak, slink", "de": "schleichen, anschleichen, stehlen"}
     ],
     [
         "sluiten",
         "sloot",
         "sloten",
         "gesloten",
-        "close, shut, lock"
+        {"en": "close, shut, lock", "de": "schließen, verriegeln, zumachen"}
     ],
     [
         "smelten",
         "smolt",
         "smolten",
         "gesmolten",
-        "melt, fuse"
+        {"en": "melt, fuse", "de": "schmelzen, zergehen, verschmelzen"}
     ],
     [
         "smijten",
         "smeet",
         "smeten",
         "gesmeten",
-        "throw, fling, cast"
+        {"en": "throw, fling, cast", "de": "werfen, schleudern, schmeißen"}
     ],
     [
         "snijden",
         "sneed",
         "sneden",
         "gesneden",
-        "cut, slice"
+        {"en": "cut, slice", "de": "schneiden, durchschneiden, zerschneiden"}
     ],
     [
         "snuiten",
         "snoot",
         "snoten",
         "gesnoten",
-        "blow one's nose, snuff"
+        {"en": "blow one's nose, snuff", "de": "sich schnäuzen, schnupfen, tabak schnupfen"}
     ],
     [
         "snuiven",
         "snoof",
         "snoven",
         "gesnoven",
-        "snort, whiff, snuffle"
+        {"en": "snort, whiff, snuffle", "de": "schnauben, schnüffeln, schnaufen"}
     ],
     [
         "spannen",
         "spande",
         "spanden",
         "gespannen",
-        "tense, strech, wind up"
+        {"en": "tense, strech, wind up", "de": "spannen, anspannen, ausspannen"}
     ],
     [
         "spijten",
         "speet",
         "speten",
         "gespeten",
-        "regret, sorry, be sorry"
+        {"en": "regret, sorry, be sorry", "de": "bereuen, leid tun, gereuen"}
     ],
     [
         "spinnen",
         "spon",
         "sponnen",
         "gesponnen",
-        "spin, purr, to purr"
+        {"en": "spin, purr, to purr", "de": "spinnen, schnurren, verspinnen"}
     ],
     [
         "splijten",
         "spleet",
         "spleten",
         "gespleten",
-        "split, cleavage, shed"
+        {"en": "split, cleavage, shed", "de": "spalten, zerklüften, aufgehen"}
     ],
     [
         "spreken",
         "sprak",
         "spraken",
         "gesproken",
-        "speak, talk, speech"
+        {"en": "speak, talk, speech", "de": "sprechen, reden, sagen"}
     ],
     [
         "springen",
         "sprong",
         "sprongen",
         "gesprongen",
-        "jump, leap, spring"
+        {"en": "jump, leap, spring", "de": "springen, hüpfen, hochspringen"}
     ],
     [
         "spruiten",
         "sproot",
         "sproten",
         "gesproten",
-        "sprout, bud, arise"
+        {"en": "sprout, bud, arise", "de": "erblühen, knospen, erblühen"}
     ],
     [
         "spuiten",
         "spoot",
         "spoten",
         "gespoten",
-        "squirt, blow, inject"
+        {"en": "squirt, blow, inject", "de": "spritzen, prusten, blasen"}
     ],
     [
         "steken",
         "stak",
         "staken",
         "gestoken",
-        "stab, sting, pick"
+        {"en": "stab, sting, pick", "de": "stechen, stoßen, pflanzen"}
     ],
     [
         "stelen",
         "stal",
         "stalen",
         "gestolen",
-        "steal, boost"
+        {"en": "steal, boost", "de": "stehlen, klauen, diebstahl"}
     ],
     [
         "sterven",
         "stierf",
         "stierven",
         "gestorven",
-        "die, expire"
+        {"en": "die, expire", "de": "sterben, verenden, verscheiden"}
     ],
     [
         "stijgen",
         "steeg",
         "stegen",
         "gestegen",
-        "rise, ascend, climb"
+        {"en": "rise, ascend, climb", "de": "steigen, aufsteigen, erklimmen"}
     ],
     [
         "stijven",
         "steef",
         "steven",
         "gesteven",
-        "provide, supply, encourage"
+        {"en": "provide, supply, encourage", "de": "stützen, stärken, unterstützen"}
     ],
     [
         "stinken",
         "stonk",
         "stonken",
         "gestonken",
-        "stink, reek, smell"
+        {"en": "stink, reek, smell", "de": "stinken, riechen, duften"}
     ],
     [
         "stoten",
         "stootte",
         "stootten",
         "gestoten",
-        "push, thrust, stub"
+        {"en": "push, thrust, stub", "de": "stoßen, anstoßen, treffen"}
     ],
     [
         "strijden",
         "streed",
         "streden",
         "gestreden",
-        "fight, struggle, battle"
+        {"en": "fight, struggle, battle", "de": "kämpfen, streiten, ringen"}
     ],
     [
         "strijken",
         "streek",
         "streken",
         "gestreken",
-        "iron, lower"
+        {"en": "iron, lower", "de": "bügeln, streichen, herunterlassen"}
     ],
     [
         "stuiven",
         "stoof",
         "stoven",
         "gestoven",
-        "gush, spurt"
+        {"en": "gush, spurt", "de": "stäuben, spritzen, gießen"}
     ],
     [
         "treden",
         "trad",
         "traden",
         "getreden",
-        "step, tread, pace"
+        {"en": "step, tread, pace", "de": "treten, schreiten, gehen"}
     ],
     [
         "treffen",
         "trof",
         "troffen",
         "getroffen",
-        "hit, encounter, meet"
+        {"en": "hit, encounter, meet", "de": "treffen, begegnen, antreffen"}
     ],
     [
         "trekken",
         "trok",
         "trokken",
         "getrokken",
-        "pull, draw, drag"
+        {"en": "pull, draw, drag", "de": "ziehen, reißen, zerren"}
     ],
     [
         "vallen",
         "viel",
         "vielen",
         "gevallen",
-        "fall, drop, down"
+        {"en": "fall, drop, down", "de": "fallen, hinunterfallen, sinken"}
     ],
     [
         "vangen",
         "ving",
         "vingen",
         "gevangen",
-        "catch, trap, capture"
+        {"en": "catch, trap, capture", "de": "fangen, ergreifen, fesseln"}
     ],
     [
         "varen",
         "voer",
         "voeren",
         "gevaren",
-        "sail, navigate"
+        {"en": "sail, navigate", "de": "fahren, segeln, reisen"}
     ],
     [
         "vechten",
         "vocht",
         "vochten",
         "gevochten",
-        "fight, struggle, battle"
+        {"en": "fight, struggle, battle", "de": "kämpfen, streiten, ringen"}
     ],
     [
         "verdrieten",
         "verdroot",
         "verdroten",
         "verdroten",
-        "vex, worry, annoy"
+        {"en": "vex, worry, annoy", "de": "ärgern, verdrießen, belastigen"}
     ],
     [
         "verdwijnen",
         "verdween",
         "verdwenen",
         "verdwenen",
-        "disappear, vanish, go"
+        {"en": "disappear, vanish, go", "de": "verschwinden, entschwinden, entweichen"}
     ],
     [
         "vergeten",
         "vergat",
         "vergaten",
         "vergeten",
-        "forget"
+        {"en": "forget", "de": "vergessen, nicht beachten"}
     ],
     [
         "verliezen",
         "verloor",
         "verloren",
         "verloren",
-        "lose"
+        {"en": "lose", "de": "verlieren, zusehen, einbüßen"}
     ],
     [
         "vinden",
         "vond",
         "vonden",
         "gevonden",
-        "find, think"
+        {"en": "find, think", "de": "finden, antreffen, meinen"}
     ],
     [
         "vlechten",
         "vlocht",
         "vlochten",
         "gevlochten",
-        "plait, braid, wreathe"
+        {"en": "plait, braid, wreathe", "de": "flechten, verflechten, verwickeln"}
     ],
     [
         "vliegen",
         "vloog",
         "vlogen",
         "gevlogen",
-        "fly"
+        {"en": "fly", "de": "fliegen, davonfliegen, schweben"}
     ],
     [
         "vouwen",
         "vouwde",
         "vouwden",
         "gevouwen",
-        "fold, crease"
+        {"en": "fold, crease", "de": "falten, zusammenfalten, knicken"}
     ],
     [
         "vragen",
         "vroeg",
         "vroegen",
         "gevraagd",
-        "ask, inquire, request"
+        {"en": "ask, inquire, request", "de": "fragen, fragen, erkundigen"}
     ],
     [
         "vreten",
         "vrat",
         "vraten",
         "gevreten",
-        "eat, devour, grub"
+        {"en": "eat, devour, grub", "de": "fressen, geffressen, hineinschaufeln"}
     ],
     [
         "vriezen",
         "vroor",
         "vroren",
         "gevroren",
-        "freeze, to freeze"
+        {"en": "freeze, to freeze", "de": "frieren, gefrieren, erstarren"}
     ],
     [
         "vrijen",
         "vree",
         "vreeën",
         "gevreeën",
-        "woo, court, pet"
+        {"en": "woo, court, pet", "de": "freien, umwerben, schäkern"}
     ],
     [
         "wassen",
         "waste",
         "wasten",
         "gewassen",
-        "wash, wax, grow"
+        {"en": "wash, wax, grow", "de": "wachsen, wachsen, anwachsen"}
     ],
     [
         "wegen",
         "woog",
         "wogen",
         "gewogen",
-        "weigh"
+        {"en": "weigh", "de": "wiegen, abwiegen, auswägen"}
     ],
     [
         "werpen",
         "wierp",
         "wierpen",
         "geworpen",
-        "throw, cast"
+        {"en": "throw, cast", "de": "werfen, schmeißen, schleudern"}
     ],
     [
         "werven",
         "wierf",
         "wierven",
         "geworven",
-        "recruit, enlist"
+        {"en": "recruit, enlist", "de": "werben, anwerben, rekrutieren"}
     ],
     [
         "weten",
         "wist",
         "wisten",
         "geweten",
-        "know"
+        {"en": "know", "de": "wissen, kennen, verstehen"}
     ],
     [
         "weven",
         "weefde",
         "weefden",
         "geweven",
-        "weave"
+        {"en": "weave", "de": "weben, flechten, verflechten"}
     ],
     [
         "wijken",
         "week",
         "weken",
         "geweken",
-        "yield, disappear, stop"
+        {"en": "yield, disappear, stop", "de": "weichen, zurückweichen, nachgeben"}
     ],
     [
         "wijten",
         "weet",
         "weten",
         "geweten",
-        "blame, ascribe, hold against"
+        {"en": "blame, ascribe, hold against", "de": "vorwerfen, beimessen, anrechnen"}
     ],
     [
         "wijzen",
         "wees",
         "wezen",
         "gewezen",
-        "show, indicate, point"
+        {"en": "show, indicate, point", "de": "zeigen, weisen, hinweisen"}
     ],
     [
         "winden",
         "wond",
         "wonden",
         "gewonden",
-        "wind, roll"
+        {"en": "wind, roll", "de": "winden, wickeln, rollen"}
     ],
     [
         "winnen",
         "won",
         "wonnen",
         "gewonnen",
-        "win, gain, earn"
+        {"en": "win, gain, earn", "de": "gewinnen, siegen, verdienen"}
     ],
     [
         "worden",
         "werd",
         "werden",
         "geworden",
-        "become, get, be"
+        {"en": "become, get, be", "de": "werden, entstehen, sich wandeln"}
     ],
     [
         "wrijven",
         "wreef",
         "wreven",
         "gewreven",
-        "rub, polish, gall"
+        {"en": "rub, polish, gall", "de": "reiben, polieren, scheuern"}
     ],
     [
         "wringen",
         "wrong",
         "wrongen",
         "gewrongen",
-        "wring, twist, squirm"
+        {"en": "wring, twist, squirm", "de": "wringen, winden, drehen"}
     ],
     [
         "zeggen",
         "zei",
         "zeiden",
         "gezegd",
-        "say, tell"
+        {"en": "say, tell", "de": "sagen, sprechen, erzählen"}
     ],
     [
         "zenden",
         "zond",
         "zonden",
         "gezonden",
-        "send, transmit, dispatch"
+        {"en": "send, transmit, dispatch", "de": "senden, übermitteln, befördern"}
     ],
     [
         "zingen",
         "zong",
         "zongen",
         "gezongen",
-        "sing"
+        {"en": "sing", "de": "singen, anstimmen, ertönen"}
     ],
     [
         "zinken",
         "zonk",
         "zonken",
         "gezonken",
-        "sink"
+        {"en": "sink", "de": "sinken, versenken, untergehen"}
     ],
     [
         "zinnen",
         "zon",
         "zonnen",
         "gezonnen",
-        "please, meditate"
+        {"en": "please, meditate", "de": "gefallen, sinnen, ersinnen"}
     ],
     [
         "zitten",
         "zat",
         "zaten",
         "gezeten",
-        "sit, be, do"
+        {"en": "sit, be, do", "de": "sitzen, sich setzen, hocken"}
     ],
     [
         "zoeken",
         "zocht",
         "zochten",
         "gezocht",
-        "search, seek, look for"
+        {"en": "search, seek, look for", "de": "suchen, aufsuchen, recherchieren"}
     ],
     [
         "zuigen",
         "zoog",
         "zogen",
         "gezogen",
-        "suck, hoover"
+        {"en": "suck, hoover", "de": "saugen, aufsaugen, einsaugen"}
     ],
     [
         "zuipen",
         "zoop",
         "zopen",
         "gezopen",
-        "down, drink, swig"
+        {"en": "down, drink, swig", "de": "saufen, trinken, schlürfen"}
     ],
     [
         "zwelgen",
         "zwolg",
         "zwolgen",
         "gezwolgen",
-        "wallow, guzzle, revel"
+        {"en": "wallow, guzzle, revel", "de": "schwelgen, prassen, genießen"}
     ],
     [
         "zwellen",
         "zwol",
         "zwollen",
         "gezwollen",
-        "swell, bloat, billow"
+        {"en": "swell, bloat, billow", "de": "schwellen, aufquellen, anschwellen"}
     ],
     [
         "zwemmen",
         "zwom",
         "zwommen",
         "gezwommen",
-        "swim, float"
+        {"en": "swim, float", "de": "schwimmen, schweben, treiben"}
     ],
     [
         "zweren",
         "zwoer",
         "zwoeren",
         "gezworen",
-        "swear, vow, fester"
+        {"en": "swear, vow, fester", "de": "schwören, geloben, eitern"}
     ],
     [
         "zwerven",
         "zwierf",
         "zwierven",
         "gezworven",
-        "wander, roam, migrate"
+        {"en": "wander, roam, migrate", "de": "umherwandern, wandern, sich herumtreiben"}
     ],
     [
         "zwijgen",
         "zweeg",
         "zwegen",
         "gezwegen",
-        "be silent"
+        {"en": "be silent", "de": "schweigen, verstummen, stillschweigen"}
     ]
 ]

@@ -16,6 +16,50 @@
   let totalOk = 0;
   let totalError = 0;
   let wasIncorrectInput = false;
+  let currentLanguage = 'en';
+  const AVAILABLE_LANGUAGES = ['en', 'de'];
+  const LANGUAGE_NAMES = {'en': 'English', 'de': 'Deutsch'};
+  
+  function getTranslation(translationObj) {
+      if (typeof translationObj === 'string') {
+          // Old format - just a string
+          return translationObj;
+      }
+      // New format - dictionary with languages
+      if (translationObj[currentLanguage]) {
+          return translationObj[currentLanguage];
+      }
+      // Fallback to English
+      return translationObj['en'] || JSON.stringify(translationObj);
+  }
+  
+  function detectBrowserLanguage() {
+      const browserLang = navigator.language || navigator.userLanguage || 'en';
+      const langCode = browserLang.split('-')[0].toLowerCase();
+      return AVAILABLE_LANGUAGES.includes(langCode) ? langCode : 'en';
+  }
+  
+  function setLanguage(lang) {
+      if (AVAILABLE_LANGUAGES.includes(lang)) {
+          currentLanguage = lang;
+          localStorage.language = lang;
+          updateLanguageDisplay();
+      }
+  }
+  
+  function updateLanguageDisplay() {
+      // Update language buttons
+      AVAILABLE_LANGUAGES.forEach(lang => {
+          const btn = document.getElementById(`lang-${lang}`);
+          if (btn) {
+              btn.classList.toggle('active', lang === currentLanguage);
+          }
+      });
+      // Update game display if game is running
+      if (ow) {
+          document.querySelector('.meaning').innerHTML = getTranslation(ow[4]);
+      }
+  }
   function next() {
       if (!OwList.length) {
           const row = document.querySelector('.row');
@@ -31,7 +75,7 @@
       wasIncorrectInput = false;
       ow.forEach((part, ix) => {
           if (ix > 3) {
-              document.querySelector('.meaning').innerHTML = part;
+              document.querySelector('.meaning').innerHTML = getTranslation(part);
               return;
           }
           const value = ix === answerIx ? '' : part;
@@ -84,6 +128,18 @@
       document.getElementById('progress-error').style.width = (totalError / total * 100) + '%';
   }
   function init() {
+      // Initialize language
+      currentLanguage = localStorage.language || detectBrowserLanguage();
+      
+      // Setup language buttons
+      document.querySelectorAll('[id^="lang-"]').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+              const lang = e.target.id.replace('lang-', '');
+              setLanguage(lang);
+          });
+      });
+      updateLanguageDisplay();
+      
       document.querySelectorAll('input').forEach(input => {
           input.addEventListener('input', onInput);
           input.addEventListener('keydown', onKeyDown);
@@ -217,6 +273,33 @@
   .submit-with-return:hover {
       color: #3d414b;
   }
+  .language-selector {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      display: flex;
+      gap: 8px;
+  }
+  .lang-btn {
+      padding: 6px 12px;
+      background: #3d414b;
+      color: #5A606A;
+      border: 1px solid #555C66;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 12px;
+      font-family: -apple-system, Helvetica, Arial;
+      transition: all 100ms ease-out;
+  }
+  .lang-btn:hover {
+      background: #444a54;
+      color: #6b7280;
+  }
+  .lang-btn.active {
+      background: #54F176;
+      color: #282B33;
+      border-color: #54F176;
+  }
   </style>
 </head>
 <body>
@@ -243,6 +326,10 @@
         </div>
     </div>
     <div class="meaning">
+    </div>
+    <div class="language-selector">
+        <button id="lang-en" class="lang-btn">English</button>
+        <button id="lang-de" class="lang-btn">Deutsch</button>
     </div>
     <div class="submit-with-return">⏎</div>
     <div class="footer">
