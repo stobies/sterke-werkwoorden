@@ -9,16 +9,23 @@
   <link rel="icon" type="image/png" href="favicon.png" />
   <title>Sterke Werkwoorden</title>
   <script src="ow.js"></script>
+  <script src="watleuk.js"></script>
   <script>
   let ow;
   let answerIx;
-  let total = OwList.length;
+  let total;
   let totalOk = 0;
   let totalError = 0;
   let wasIncorrectInput = false;
   let currentLanguage = 'en';
   const AVAILABLE_LANGUAGES = ['en', 'de'];
   const LANGUAGE_NAMES = {'en': 'English', 'de': 'Deutsch'};
+  
+  const WORDLISTS = {
+      'complete': { name: 'Complete list', data: OwList },
+      'watleuk': { name: 'Wat leuk', data: WatLeukList }
+  };
+  let selectedList = null;
   
   function getTranslation(translationObj) {
       if (typeof translationObj === 'string') {
@@ -155,6 +162,23 @@
           });
       });
       showSubmitWithReturn();
+      showStartPage();
+  }
+  function showStartPage() {
+      document.querySelector('.start-page').style.display = 'flex';
+      document.querySelector('.game-area').style.display = 'none';
+  }
+  function startGame() {
+      const listKey = document.getElementById('wordlist-select').value;
+      selectedList = WORDLISTS[listKey].data.map(item => [...item]);
+      total = selectedList.length;
+      totalOk = 0;
+      totalError = 0;
+      document.getElementById('progress-ok').style.width = '0%';
+      document.getElementById('progress-error').style.width = '0%';
+      document.querySelector('.start-page').style.display = 'none';
+      document.querySelector('.game-area').style.display = 'block';
+      OwList = selectedList;
       next();
   }
   function showSubmitWithReturn() {
@@ -300,9 +324,71 @@
       color: #282B33;
       border-color: #54F176;
   }
+  .start-page {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+  }
+  .start-content {
+      text-align: center;
+  }
+  .start-content h1 {
+      color: #ABB2BE;
+      margin-bottom: 30px;
+  }
+  .list-selector {
+      margin-bottom: 30px;
+  }
+  .list-selector label {
+      color: #5A606A;
+      font-size: 16px;
+      display: block;
+      margin-bottom: 10px;
+  }
+  .list-selector select {
+      font-size: 18px;
+      padding: 10px 20px;
+      background: #3d414b;
+      color: #ABB2BE;
+      border: 1px solid #555C66;
+      border-radius: 4px;
+      cursor: pointer;
+  }
+  .start-btn {
+      font-size: 20px;
+      padding: 12px 40px;
+      background: #54F176;
+      color: #282B33;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: -apple-system, Helvetica, Arial;
+  }
+  .start-btn:hover {
+      background: #45d865;
+  }
+  .game-area {
+      display: none;
+  }
   </style>
 </head>
 <body>
+    <div class="start-page">
+        <div class="start-content">
+            <h1>Sterke Werkwoorden</h1>
+            <div class="list-selector">
+                <label for="wordlist-select">Woordenlijst:</label>
+                <select id="wordlist-select">
+                    <option value="complete">Complete list</option>
+                    <option value="watleuk">Wat leuk</option>
+                </select>
+            </div>
+            <button class="start-btn" onclick="startGame()">Start</button>
+        </div>
+    </div>
+    <div class="game-area">
     <div class="progress">
         <div id="progress-error"></div>
         <div id="progress-ok"></div>
@@ -334,6 +420,7 @@
     <div class="submit-with-return">⏎</div>
     <div class="footer">
         Typ "?" om het antwoord te zien. ⟨⟩ met ♡ door Antelle.
+    </div>
     </div>
 </body>
 </html>
