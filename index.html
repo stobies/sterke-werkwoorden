@@ -51,10 +51,8 @@
       },
 
       updateLanguageDisplay() {
-          this.AVAILABLE_LANGUAGES.forEach(lang => {
-              const btn = document.getElementById(`lang-${lang}`);
-              if (btn) btn.classList.toggle('active', lang === this.currentLanguage);
-          });
+          const sel = document.getElementById('language-select');
+          if (sel) sel.value = this.currentLanguage;
           if (this.ow) {
               document.querySelector('.meaning').innerHTML = this.getTranslation(this.ow[4]);
           }
@@ -176,10 +174,12 @@
       init() {
           this.currentLanguage = localStorage.language || this.detectBrowserLanguage();
 
-          // language buttons
-          document.querySelectorAll('[id^="lang-"]').forEach(btn => {
-              btn.addEventListener('click', (e) => this.setLanguage(e.target.id.replace('lang-','')));
-          });
+          // language dropdown
+          const langSel = document.getElementById('language-select');
+          if (langSel) {
+              langSel.value = localStorage.language || this.detectBrowserLanguage();
+              langSel.addEventListener('change', (e) => this.setLanguage(e.target.value));
+          }
           this.updateLanguageDisplay();
 
           document.querySelectorAll('input').forEach(input => {
@@ -191,16 +191,15 @@
               });
           });
 
-          const slider = document.getElementById('difficulty-slider');
-          if (slider) {
-              slider.value = localStorage.difficulty || 1;
-              this.difficulty = parseInt(slider.value,10);
-              slider.addEventListener('input', (e) => {
+          const sel = document.getElementById('difficulty-select');
+          if (sel) {
+              sel.value = localStorage.difficulty || 1;
+              this.difficulty = parseInt(sel.value,10);
+              sel.addEventListener('change', (e) => {
                   this.difficulty = parseInt(e.target.value,10);
                   localStorage.difficulty = this.difficulty;
-                  this.updateDifficultyDisplay();
+                  // no extra display update needed; select shows the label
               });
-              this.updateDifficultyDisplay();
           }
 
           document.querySelectorAll('.submit-with-return').forEach(check => {
@@ -231,7 +230,7 @@
 
       startGame() {
           const listKey = document.getElementById('wordlist-select').value;
-          this.difficulty = parseInt(document.getElementById('difficulty-slider').value,10) || 1;
+          this.difficulty = parseInt(document.getElementById('difficulty-select').value,10) || 1;
           localStorage.difficulty = this.difficulty;
           const selected = this.WORDLISTS[listKey].data.map(item => [...item]);
           this.total = selected.length;
@@ -424,7 +423,7 @@
       border-radius: 4px;
       cursor: pointer;
   }
-  /* difficulty slider positioned top-left */
+  /* difficulty selector positioned top-left */
   .difficulty-control {
       position: fixed;
       top: 10px;
@@ -439,8 +438,14 @@
       border-radius: 4px;
       z-index: 100;
   }
-  .difficulty-control input[type=range] {
-      width: 100px;
+  .difficulty-control select {
+      font-size: 14px;
+      padding: 2px 4px;
+      background: #3d414b;
+      color: #ABB2BE;
+      border: 1px solid #555C66;
+      border-radius: 4px;
+      cursor: pointer;
   }
   .start-btn {
       font-size: 20px;
@@ -504,15 +509,22 @@
     </div>
     <div class="meaning">
     </div>
-    <!-- moved difficulty slider to top-left area -->
+    <!-- difficulty selector as dropdown -->
     <div class="difficulty-control">
-        <label for="difficulty-slider">Moeilijkheid:</label>
-        <span id="difficulty-value">1</span>
-        <input type="range" id="difficulty-slider" min="1" max="4" value="1" />
+        <label for="difficulty-select">Moeilijkheid:</label>
+        <select id="difficulty-select">
+            <option value="1">1 (gemakkelijk)</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4 (moeilijk)</option>
+        </select>
     </div>
     <div class="language-selector">
-        <button id="lang-en" class="lang-btn">English</button>
-        <button id="lang-de" class="lang-btn">Deutsch</button>
+        <label for="language-select" class="visually-hidden">Language</label>
+        <select id="language-select">
+            <option value="en">English</option>
+            <option value="de">Deutsch</option>
+        </select>
     </div>
     <div class="submit-with-return">⏎</div>
     <div class="footer">
