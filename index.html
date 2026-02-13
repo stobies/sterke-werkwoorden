@@ -266,7 +266,7 @@
   .row {
       display: flex;
       justify-content: space-between;
-      padding-top: 2%;
+      padding-top: 1%;
   }
   .row.results {
       color: #ABB2BE;
@@ -276,26 +276,35 @@
           flex-direction: column;
           justify-content: flex-start;
       }
+      input {
+          font-size: 24px;
+      }
+      .item {
+          padding: 8px;
+      }
+      .meaning {
+          padding: 15px 0;
+      }
   }
   .results {
       padding: 20px;
       justify-content: center;
   }
   .item {
-      padding: 20px;
+      padding: 10px;
       position: relative;
   }
   label {
       display: block;
-      padding: 4px 8px;
-      font-size: 10px;
+      padding: 2px 4px;
+      font-size: 9px;
       color: #5A606A;
   }
   input {
       display: block;
       width: 90%;
-      font-size: 30px;
-      padding: 4px 8px;
+      font-size: 26px;
+      padding: 2px 6px;
       transition: background-color 300ms linear, border-color 300ms linear;
       outline: none;
       border-radius: 2px;
@@ -333,7 +342,7 @@
   .meaning {
       color: #5A606A;
       text-align: center;
-      padding: 30px 0;
+      padding: 20px 0;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -423,22 +432,24 @@
       border-radius: 4px;
       cursor: pointer;
   }
-  /* difficulty selector positioned top-left */
-  .difficulty-control {
-      position: fixed;
-      top: 10px;
-      left: 10px;
-      padding: 6px 10px;
+  /* controls container at bottom */
+  .controls-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 10px 0;
+  }
+  .difficulty-control, .language-selector {
       color: #5A606A;
       font-size: 14px;
       background: rgba(40,43,51,0.9);
+      padding: 6px 10px;
+      border-radius: 4px;
       display: flex;
       align-items: center;
       gap: 6px;
-      border-radius: 4px;
-      z-index: 100;
   }
-  .difficulty-control select {
+  .difficulty-control select, .language-selector select {
       font-size: 14px;
       padding: 2px 4px;
       background: #3d414b;
@@ -465,7 +476,7 @@
       height: 100vh;
       overflow: auto;
       box-sizing: border-box;
-      padding-bottom: 25vh; /* ensure room for on-screen keyboard */
+      padding-bottom: 10vh;
   }
   </style>
 </head>
@@ -509,22 +520,24 @@
     </div>
     <div class="meaning">
     </div>
-    <!-- difficulty selector as dropdown -->
-    <div class="difficulty-control">
-        <label for="difficulty-select">Moeilijkheid:</label>
-        <select id="difficulty-select">
-            <option value="1">1 (gemakkelijk)</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4 (moeilijk)</option>
-        </select>
-    </div>
-    <div class="language-selector">
-        <label for="language-select" class="visually-hidden">Language</label>
-        <select id="language-select">
-            <option value="en">English</option>
-            <option value="de">Deutsch</option>
-        </select>
+    <!-- controls moved below main game area -->
+    <div class="controls-container">
+      <div class="difficulty-control">
+          <label for="difficulty-select">Moeilijkheid:</label>
+          <select id="difficulty-select">
+              <option value="1">1 (gemakkelijk)</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4 (moeilijk)</option>
+          </select>
+      </div>
+      <div class="language-selector">
+          <label for="language-select" class="visually-hidden">Language</label>
+          <select id="language-select">
+              <option value="en">English</option>
+              <option value="de">Deutsch</option>
+          </select>
+      </div>
     </div>
     <div class="submit-with-return">⏎</div>
     <div class="footer">
