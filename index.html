@@ -185,6 +185,10 @@
           document.querySelectorAll('input').forEach(input => {
               input.addEventListener('input', (e) => this.onInput(e));
               input.addEventListener('keydown', (e) => this.onKeyDown(e));
+              input.addEventListener('focus', (e) => {
+                  // make sure focused field is visible when keyboard opens
+                  e.target.scrollIntoView({behavior:'smooth', block:'center'});
+              });
           });
 
           const slider = document.getElementById('difficulty-slider');
@@ -420,22 +424,23 @@
       border-radius: 4px;
       cursor: pointer;
   }
-  /* fixed slider at bottom of page */
+  /* difficulty slider positioned top-left */
   .difficulty-control {
       position: fixed;
-      bottom: 40px; /* above footer */
-      left: 0;
-      width: 100%;
-      padding: 0 10px;
+      top: 10px;
+      left: 10px;
+      padding: 6px 10px;
       color: #5A606A;
       font-size: 14px;
       background: rgba(40,43,51,0.9);
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 6px;
+      border-radius: 4px;
+      z-index: 100;
   }
   .difficulty-control input[type=range] {
-      flex: 1;
+      width: 100px;
   }
   .start-btn {
       font-size: 20px;
@@ -452,6 +457,10 @@
   }
   .game-area {
       display: none;
+      height: 100vh;
+      overflow: auto;
+      box-sizing: border-box;
+      padding-bottom: 25vh; /* ensure room for on-screen keyboard */
   }
   </style>
 </head>
@@ -495,6 +504,12 @@
     </div>
     <div class="meaning">
     </div>
+    <!-- moved difficulty slider to top-left area -->
+    <div class="difficulty-control">
+        <label for="difficulty-slider">Moeilijkheid:</label>
+        <span id="difficulty-value">1</span>
+        <input type="range" id="difficulty-slider" min="1" max="4" value="1" />
+    </div>
     <div class="language-selector">
         <button id="lang-en" class="lang-btn">English</button>
         <button id="lang-de" class="lang-btn">Deutsch</button>
@@ -502,12 +517,6 @@
     <div class="submit-with-return">⏎</div>
     <div class="footer">
         Typ "?" om het antwoord te zien. ⟨⟩ met ♡ door Antelle.
-    </div>
-    <!-- difficulty slider fixed to bottom -->
-    <div class="difficulty-control">
-        <label for="difficulty-slider">Moeilijkheid:</label>
-        <span id="difficulty-value">1</span>
-        <input type="range" id="difficulty-slider" min="1" max="4" value="1" />
     </div>
     </div>
 </body>
