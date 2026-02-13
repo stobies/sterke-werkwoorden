@@ -11,258 +11,242 @@
   <script src="ow.js"></script>
   <script src="watleuk.js"></script>
   <script>
-  let ow;
-  // when difficulty > 1 we may have multiple blanks per round
-  // this array holds the indices the user needs to fill
-  let blanksIndices = [];
-  let correctThisRound = 0;
-  // track if a specific blank has had an incorrect attempt
-  let fieldHadError = {};
-  let total;
-  let totalOk = 0;
-  let totalError = 0;
-  let currentLanguage = 'en';
-  let difficulty = 1; // 1 (easy) .. 4 (hard)
-  const AVAILABLE_LANGUAGES = ['en', 'de'];
-  const LANGUAGE_NAMES = {'en': 'English', 'de': 'Deutsch'};
-  
-  const WORDLISTS = {
-      'complete': { name: 'Heele lijst', data: OwList },
-      'watleuk': { name: 'Wat leuk', data: WatLeukList }
-  };
-  let selectedList = null;
-  
-  function getTranslation(translationObj) {
-      if (typeof translationObj === 'string') {
-          // Old format - just a string
-          return translationObj;
-      }
-      // New format - dictionary with languages
-      if (translationObj[currentLanguage]) {
-          return translationObj[currentLanguage];
-      }
-      // Fallback to English
-      return translationObj['en'] || JSON.stringify(translationObj);
-  }
-  
-  function detectBrowserLanguage() {
-      const browserLang = navigator.language || navigator.userLanguage || 'en';
-      const langCode = browserLang.split('-')[0].toLowerCase();
-      return AVAILABLE_LANGUAGES.includes(langCode) ? langCode : 'en';
-  }
-  
-  function setLanguage(lang) {
-      if (AVAILABLE_LANGUAGES.includes(lang)) {
-          currentLanguage = lang;
-          localStorage.language = lang;
-          updateLanguageDisplay();
-      }
-  }
-  
-  function updateLanguageDisplay() {
-      // Update language buttons
-      AVAILABLE_LANGUAGES.forEach(lang => {
-          const btn = document.getElementById(`lang-${lang}`);
-          if (btn) {
-              btn.classList.toggle('active', lang === currentLanguage);
-          }
-      });
-      // Update game display if game is running
-      if (ow) {
-          document.querySelector('.meaning').innerHTML = getTranslation(ow[4]);
-      }
-  }
-  function next() {
-      if (!OwList.length) {
-          const row = document.querySelector('.row');
-          row.innerHTML = `Done! ${totalOk} / ${total}`;
-          row.classList.add('results');
-          document.querySelector('.meaning').innerHTML = '';
-          return;
-      }
-      const ix = Math.floor(Math.random() * OwList.length);
-      ow = OwList[ix];
-      OwList.splice(ix, 1);
+  const game = {
+      // state
+      ow: null,
+      blanksIndices: [],
+      correctThisRound: 0,
+      fieldHadError: {},
+      total: 0,
+      totalOk: 0,
+      totalError: 0,
+      remaining: [],
+      currentLanguage: 'en',
+      difficulty: 1,              // 1 (easy) .. 4 (hard)
+      AVAILABLE_LANGUAGES: ['en', 'de'],
+      LANGUAGE_NAMES: {'en': 'English', 'de': 'Deutsch'},
+      WORDLISTS: {
+          'complete': { name: 'Heele lijst', data: OwList },
+          'watleuk': { name: 'Wat leuk', data: WatLeukList }
+      },
 
-      // prepare blanks based on difficulty
-      blanksIndices = [];
-      correctThisRound = 0;
-      fieldHadError = {};
-      // choose "difficulty" distinct indices from 0..3
-      const indices = [0,1,2,3];
-      for (let i = 0; i < difficulty; i++) {
-          const j = Math.floor(Math.random() * indices.length);
-          blanksIndices.push(indices.splice(j,1)[0]);
-      }
-      ow.forEach((part, ix) => {
-          if (ix > 3) {
-              document.querySelector('.meaning').innerHTML = getTranslation(part);
+      getTranslation(obj) {
+          if (typeof obj === 'string') return obj;
+          if (obj[this.currentLanguage]) return obj[this.currentLanguage];
+          return obj['en'] || JSON.stringify(obj);
+      },
+
+      detectBrowserLanguage() {
+          const browserLang = navigator.language || navigator.userLanguage || 'en';
+          const langCode = browserLang.split('-')[0].toLowerCase();
+          return this.AVAILABLE_LANGUAGES.includes(langCode) ? langCode : 'en';
+      },
+
+      setLanguage(lang) {
+          if (this.AVAILABLE_LANGUAGES.includes(lang)) {
+              this.currentLanguage = lang;
+              localStorage.language = lang;
+              this.updateLanguageDisplay();
+          }
+      },
+
+      updateLanguageDisplay() {
+          this.AVAILABLE_LANGUAGES.forEach(lang => {
+              const btn = document.getElementById(`lang-${lang}`);
+              if (btn) btn.classList.toggle('active', lang === this.currentLanguage);
+          });
+          if (this.ow) {
+              document.querySelector('.meaning').innerHTML = this.getTranslation(this.ow[4]);
+          }
+      },
+
+      next() {
+          if (!this.remaining.length) {
+              const row = document.querySelector('.row');
+              row.innerHTML = `Done! ${this.totalOk} / ${this.total}`;
+              row.classList.add('results');
+              document.querySelector('.meaning').innerHTML = '';
               return;
           }
-          const txt = document.getElementById(`txt${ix}`);
-          // reset styling
-          txt.classList.remove('ok','error');
-          if (blanksIndices.includes(ix)) {
-              txt.value = '';
-              txt.readOnly = false;
-          } else {
-              txt.value = part;
-              txt.readOnly = true;
-          }
-          // focus first blank
-          if (ix === blanksIndices[0]) {
-              txt.focus();
-          }
-      });
-  }
-  function onInput(e) {
-      // reveal when user types '?' in any blank field
-      if (e.target.value.indexOf('?') >= 0) {
-          revealAnswer(parseInt(e.target.id.replace('txt',''),10));
-          return;
-      }
-      if (!localStorage.submitWithReturn) {
-          const idx = parseInt(e.target.id.replace('txt',''),10);
-          if (blanksIndices.includes(idx) && e.target.value === ow[idx]) {
-              markCorrect(idx);
-          }
-      }
-  }
-  function onKeyDown(e) {
-      if (localStorage.submitWithReturn && (e.keyCode || e.which) === 13) {
-          const idx = parseInt(e.target.id.replace('txt',''),10);
-          if (!blanksIndices.includes(idx)) return;
-          const incorrect = e.target.value !== ow[idx];
-          if (incorrect) {
-              fieldHadError[idx] = true;
-              const txt = document.getElementById(`txt${idx}`);
-              txt.classList.add('error');
-              setTimeout(() => txt.classList.remove('error'), 200);
-          } else {
-              markCorrect(idx);
-          }
-      }
-  }
-  // mark a specific blank as correct and advance if all done
-  function markCorrect(idx) {
-      const txt = document.getElementById(`txt${idx}`);
-      txt.classList.add('ok');
-      txt.readOnly = true;
-      correctThisRound++;
-      if (fieldHadError[idx]) {
-          totalError++;
-      } else {
-          totalOk++;
-      }
-      showProgress();
-      // if all blanks filled advance
-      if (correctThisRound >= blanksIndices.length) {
-          setTimeout(next, 300);
-      } else {
-          // move focus to next blank
-          const nextIdx = blanksIndices[correctThisRound];
-          const nextTxt = document.getElementById(`txt${nextIdx}`);
-          if (nextTxt) nextTxt.focus();
-      }
-  }
+          const ix = Math.floor(Math.random() * this.remaining.length);
+          this.ow = this.remaining[ix];
+          this.remaining.splice(ix, 1);
 
-  function revealAnswer(idx) {
-      const txt = document.getElementById(`txt${idx}`);
-      txt.classList.add('error');
-      txt.value = ow[idx];
-      txt.readOnly = true;
-      totalError++;
-      showProgress();
-      // if this was one of the blanks, count it as done
-      if (blanksIndices.includes(idx)) {
-          correctThisRound++;
-          if (correctThisRound >= blanksIndices.length) {
-              setTimeout(next, 1000);
+          // prepare blanks
+          this.blanksIndices = [];
+          this.correctThisRound = 0;
+          this.fieldHadError = {};
+          const indices = [0,1,2,3];
+          for (let i = 0; i < this.difficulty; i++) {
+              const j = Math.floor(Math.random() * indices.length);
+              this.blanksIndices.push(indices.splice(j,1)[0]);
+          }
+
+          this.ow.forEach((part, ix) => {
+              if (ix > 3) {
+                  document.querySelector('.meaning').innerHTML = this.getTranslation(part);
+                  return;
+              }
+              const txt = document.getElementById(`txt${ix}`);
+              txt.classList.remove('ok','error');
+              if (this.blanksIndices.includes(ix)) {
+                  txt.value = '';
+                  txt.readOnly = false;
+              } else {
+                  txt.value = part;
+                  txt.readOnly = true;
+              }
+              if (ix === this.blanksIndices[0]) txt.focus();
+          });
+      },
+      onInput(e) {
+          if (e.target.value.indexOf('?') >= 0) {
+              this.revealAnswer(parseInt(e.target.id.replace('txt',''),10));
+              return;
+          }
+          if (!localStorage.submitWithReturn) {
+              const idx = parseInt(e.target.id.replace('txt',''),10);
+              if (this.blanksIndices.includes(idx) && e.target.value === this.ow[idx]) {
+                  this.markCorrect(idx);
+              }
+          }
+      },
+
+      onKeyDown(e) {
+          if (localStorage.submitWithReturn && (e.keyCode || e.which) === 13) {
+              const idx = parseInt(e.target.id.replace('txt',''),10);
+              if (!this.blanksIndices.includes(idx)) return;
+              const incorrect = e.target.value !== this.ow[idx];
+              if (incorrect) {
+                  this.fieldHadError[idx] = true;
+                  const txt = document.getElementById(`txt${idx}`);
+                  txt.classList.add('error');
+                  setTimeout(() => txt.classList.remove('error'), 200);
+              } else {
+                  this.markCorrect(idx);
+              }
+          }
+      },
+
+      // mark a specific blank as correct and advance if all done
+      markCorrect(idx) {
+          const txt = document.getElementById(`txt${idx}`);
+          txt.classList.add('ok');
+          txt.readOnly = true;
+          this.correctThisRound++;
+          if (this.fieldHadError[idx]) {
+              this.totalError++;
           } else {
-              const nextIdx = blanksIndices[correctThisRound];
+              this.totalOk++;
+          }
+          this.showProgress();
+          if (this.correctThisRound >= this.blanksIndices.length) {
+              setTimeout(() => this.next(), 300);
+          } else {
+              const nextIdx = this.blanksIndices[this.correctThisRound];
               const nextTxt = document.getElementById(`txt${nextIdx}`);
               if (nextTxt) nextTxt.focus();
           }
-      }
-  }
-  function showProgress() {
-      document.getElementById('progress-ok').style.width = (totalOk / total * 100) + '%';
-      document.getElementById('progress-error').style.width = (totalError / total * 100) + '%';
-  }
-  function init() {
-      // Initialize language
-      currentLanguage = localStorage.language || detectBrowserLanguage();
-      
-      // Setup language buttons
-      document.querySelectorAll('[id^="lang-"]').forEach(btn => {
-          btn.addEventListener('click', (e) => {
-              const lang = e.target.id.replace('lang-', '');
-              setLanguage(lang);
-          });
-      });
-      updateLanguageDisplay();
-      
-      document.querySelectorAll('input').forEach(input => {
-          input.addEventListener('input', onInput);
-          input.addEventListener('keydown', onKeyDown);
-      });
-      const slider = document.getElementById('difficulty-slider');
-      if (slider) {
-          slider.value = localStorage.difficulty || 1;
-          difficulty = parseInt(slider.value,10);
-          slider.addEventListener('input', (e) => {
-              difficulty = parseInt(e.target.value,10);
-              localStorage.difficulty = difficulty;
-              updateDifficultyDisplay();
-          });
-          updateDifficultyDisplay();
-      }
-      document.querySelectorAll('.submit-with-return').forEach(check => {
-          check.addEventListener('click', () => {
-              if (localStorage.submitWithReturn) {
-                  delete localStorage.submitWithReturn;
-              } else {
-                  localStorage.submitWithReturn = true;
-              }
-              showSubmitWithReturn();
-          });
-      });
-      showSubmitWithReturn();
-      showStartPage();
-  }
-  function showStartPage() {
-      document.querySelector('.start-page').style.display = 'flex';
-      document.querySelector('.game-area').style.display = 'none';
-  }
+      },
 
-  function updateDifficultyDisplay() {
-      const disp = document.getElementById('difficulty-value');
-      if (disp) {
-          // map 1..4 to descriptive Dutch words or numbers
-          const labels = ['1 (gemakkelijk)', '2', '3', '4 (moeilijk)'];
-          disp.textContent = labels[difficulty-1] || difficulty;
+      revealAnswer(idx) {
+          const txt = document.getElementById(`txt${idx}`);
+          txt.classList.add('error');
+          txt.value = this.ow[idx];
+          txt.readOnly = true;
+          this.totalError++;
+          this.showProgress();
+          if (this.blanksIndices.includes(idx)) {
+              this.correctThisRound++;
+              if (this.correctThisRound >= this.blanksIndices.length) {
+                  setTimeout(() => this.next(), 1000);
+              } else {
+                  const nextIdx = this.blanksIndices[this.correctThisRound];
+                  const nextTxt = document.getElementById(`txt${nextIdx}`);
+                  if (nextTxt) nextTxt.focus();
+              }
+          }
+      },
+
+      showProgress() {
+          document.getElementById('progress-ok').style.width = (this.totalOk / this.total * 100) + '%';
+          document.getElementById('progress-error').style.width = (this.totalError / this.total * 100) + '%';
+      },
+
+      init() {
+          this.currentLanguage = localStorage.language || this.detectBrowserLanguage();
+
+          // language buttons
+          document.querySelectorAll('[id^="lang-"]').forEach(btn => {
+              btn.addEventListener('click', (e) => this.setLanguage(e.target.id.replace('lang-','')));
+          });
+          this.updateLanguageDisplay();
+
+          document.querySelectorAll('input').forEach(input => {
+              input.addEventListener('input', (e) => this.onInput(e));
+              input.addEventListener('keydown', (e) => this.onKeyDown(e));
+          });
+
+          const slider = document.getElementById('difficulty-slider');
+          if (slider) {
+              slider.value = localStorage.difficulty || 1;
+              this.difficulty = parseInt(slider.value,10);
+              slider.addEventListener('input', (e) => {
+                  this.difficulty = parseInt(e.target.value,10);
+                  localStorage.difficulty = this.difficulty;
+                  this.updateDifficultyDisplay();
+              });
+              this.updateDifficultyDisplay();
+          }
+
+          document.querySelectorAll('.submit-with-return').forEach(check => {
+              check.addEventListener('click', () => {
+                  if (localStorage.submitWithReturn) delete localStorage.submitWithReturn;
+                  else localStorage.submitWithReturn = true;
+                  this.showSubmitWithReturn();
+              });
+          });
+          this.showSubmitWithReturn();
+
+          document.getElementById('start-button').addEventListener('click', () => this.startGame());
+          this.showStartPage();
+      },
+
+      showStartPage() {
+          document.querySelector('.start-page').style.display = 'flex';
+          document.querySelector('.game-area').style.display = 'none';
+      },
+
+      updateDifficultyDisplay() {
+          const disp = document.getElementById('difficulty-value');
+          if (disp) {
+              const labels = ['1 (gemakkelijk)', '2', '3', '4 (moeilijk)'];
+              disp.textContent = labels[this.difficulty-1] || this.difficulty;
+          }
+      },
+
+      startGame() {
+          const listKey = document.getElementById('wordlist-select').value;
+          this.difficulty = parseInt(document.getElementById('difficulty-slider').value,10) || 1;
+          localStorage.difficulty = this.difficulty;
+          const selected = this.WORDLISTS[listKey].data.map(item => [...item]);
+          this.total = selected.length;
+          this.totalOk = 0;
+          this.totalError = 0;
+          document.getElementById('progress-ok').style.width = '0%';
+          document.getElementById('progress-error').style.width = '0%';
+          document.querySelector('.start-page').style.display = 'none';
+          document.querySelector('.game-area').style.display = 'block';
+          this.remaining = selected;
+          this.next();
+      },
+
+      showSubmitWithReturn() {
+          document.querySelector('.submit-with-return').classList.toggle('active', !!localStorage.submitWithReturn);
       }
-  }
-  function startGame() {
-      const listKey = document.getElementById('wordlist-select').value;
-      // read difficulty again in case it changed on start page
-      difficulty = parseInt(document.getElementById('difficulty-slider').value,10) || 1;
-      localStorage.difficulty = difficulty;
-      selectedList = WORDLISTS[listKey].data.map(item => [...item]);
-      total = selectedList.length;
-      totalOk = 0;
-      totalError = 0;
-      document.getElementById('progress-ok').style.width = '0%';
-      document.getElementById('progress-error').style.width = '0%';
-      document.querySelector('.start-page').style.display = 'none';
-      document.querySelector('.game-area').style.display = 'block';
-      OwList = selectedList;
-      next();
-  }
-  function showSubmitWithReturn() {
-      document.querySelector('.submit-with-return').classList.toggle('active', !!localStorage.submitWithReturn);
-  }
-  setTimeout(init);
+  };
+
+  window.addEventListener('DOMContentLoaded', () => game.init());
   </script>
   <style>
   body, html {
@@ -482,7 +466,7 @@
                     <option value="watleuk">Wat leuk</option>
                 </select>
             </div>
-            <button class="start-btn" onclick="startGame()">Start</button>
+            <button id="start-button" class="start-btn">Start</button>
             <!-- start page content ends here -->
         </div>
     </div>
