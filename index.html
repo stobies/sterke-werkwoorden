@@ -70,10 +70,11 @@
           this.ow = this.remaining[ix];
           this.remaining.splice(ix, 1);
 
-          // prepare blanks
+              // prepare blanks for new word
           this.blanksIndices = [];
           this.correctThisRound = 0;
           this.fieldHadError = {};
+          this.currentWordHadError = false; // track overall word correctness
           const indices = [0,1,2,3];
           for (let i = 0; i < this.difficulty; i++) {
               const j = Math.floor(Math.random() * indices.length);
@@ -133,14 +134,15 @@
           const txt = document.getElementById(`txt${idx}`);
           txt.classList.add('ok');
           txt.readOnly = true;
-          this.correctThisRound++;
           if (this.fieldHadError[idx]) {
-              this.totalError++;
-          } else {
-              this.totalOk++;
+              this.currentWordHadError = true;
           }
+          this.correctThisRound++;
           this.showProgress();
           if (this.correctThisRound >= this.blanksIndices.length) {
+              // word complete: update word counts
+              if (this.currentWordHadError) this.totalError++;
+              else this.totalOk++;
               setTimeout(() => this.next(), 300);
           } else {
               const nextIdx = this.blanksIndices[this.correctThisRound];
@@ -151,14 +153,17 @@
 
       revealAnswer(idx) {
           const txt = document.getElementById(`txt${idx}`);
-          txt.classList.add('error');
+          txt.className = 'error';
           txt.value = this.ow[idx];
           txt.readOnly = true;
-          this.totalError++;
+          this.currentWordHadError = true;
           this.showProgress();
           if (this.blanksIndices.includes(idx)) {
               this.correctThisRound++;
               if (this.correctThisRound >= this.blanksIndices.length) {
+                  // complete word after brief pause
+                  if (this.currentWordHadError) this.totalError++;
+                  else this.totalOk++;
                   setTimeout(() => this.next(), 1000);
               } else {
                   const nextIdx = this.blanksIndices[this.correctThisRound];
