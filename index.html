@@ -100,6 +100,8 @@
               return;
           }
           const txt = document.getElementById(`txt${ix}`);
+          // reset styling
+          txt.classList.remove('ok','error');
           if (blanksIndices.includes(ix)) {
               txt.value = '';
               txt.readOnly = false;
