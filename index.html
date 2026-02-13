@@ -79,6 +79,8 @@
               const j = Math.floor(Math.random() * indices.length);
               this.blanksIndices.push(indices.splice(j,1)[0]);
           }
+          // keep blanks in left-to-right order so cursor flow is natural
+          this.blanksIndices.sort((a,b)=>a-b);
 
           this.ow.forEach((part, ix) => {
               if (ix > 3) {
