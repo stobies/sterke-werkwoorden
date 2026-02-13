@@ -12,12 +12,17 @@
   <script src="watleuk.js"></script>
   <script>
   let ow;
-  let answerIx;
+  // when difficulty > 1 we may have multiple blanks per round
+  // this array holds the indices the user needs to fill
+  let blanksIndices = [];
+  let correctThisRound = 0;
+  // track if a specific blank has had an incorrect attempt
+  let fieldHadError = {};
   let total;
   let totalOk = 0;
   let totalError = 0;
-  let wasIncorrectInput = false;
   let currentLanguage = 'en';
+  let difficulty = 1; // 1 (easy) .. 4 (hard)
   const AVAILABLE_LANGUAGES = ['en', 'de'];
   const LANGUAGE_NAMES = {'en': 'English', 'de': 'Deutsch'};
   
@@ -78,57 +83,96 @@
       const ix = Math.floor(Math.random() * OwList.length);
       ow = OwList[ix];
       OwList.splice(ix, 1);
-      answerIx = Math.floor(Math.random() * 4);
-      wasIncorrectInput = false;
+
+      // prepare blanks based on difficulty
+      blanksIndices = [];
+      correctThisRound = 0;
+      fieldHadError = {};
+      // choose "difficulty" distinct indices from 0..3
+      const indices = [0,1,2,3];
+      for (let i = 0; i < difficulty; i++) {
+          const j = Math.floor(Math.random() * indices.length);
+          blanksIndices.push(indices.splice(j,1)[0]);
+      }
       ow.forEach((part, ix) => {
           if (ix > 3) {
               document.querySelector('.meaning').innerHTML = getTranslation(part);
               return;
           }
-          const value = ix === answerIx ? '' : part;
           const txt = document.getElementById(`txt${ix}`);
-          txt.readOnly = ix !== answerIx;
-          txt.value = value;
-          if (ix === answerIx) {
+          if (blanksIndices.includes(ix)) {
+              txt.value = '';
+              txt.readOnly = false;
+          } else {
+              txt.value = part;
+              txt.readOnly = true;
+          }
+          // focus first blank
+          if (ix === blanksIndices[0]) {
               txt.focus();
           }
       });
   }
   function onInput(e) {
-      if (!localStorage.submitWithReturn && e.target.value === ow[answerIx] ||
-          e.target.value.indexOf('?') >= 0) {
-          showCorrectAnswer();
+      // reveal when user types '?' in any blank field
+      if (e.target.value.indexOf('?') >= 0) {
+          revealAnswer(parseInt(e.target.id.replace('txt',''),10));
+          return;
+      }
+      if (!localStorage.submitWithReturn) {
+          const idx = parseInt(e.target.id.replace('txt',''),10);
+          if (blanksIndices.includes(idx) && e.target.value === ow[idx]) {
+              markCorrect(idx);
+          }
       }
   }
   function onKeyDown(e) {
       if (localStorage.submitWithReturn && (e.keyCode || e.which) === 13) {
-          const incorrect = e.target.value !== ow[answerIx];
-          wasIncorrectInput = wasIncorrectInput || incorrect;
+          const idx = parseInt(e.target.id.replace('txt',''),10);
+          if (!blanksIndices.includes(idx)) return;
+          const incorrect = e.target.value !== ow[idx];
           if (incorrect) {
-              const txt = document.getElementById(`txt${answerIx}`);
+              fieldHadError[idx] = true;
+              const txt = document.getElementById(`txt${idx}`);
               txt.classList.add('error');
               setTimeout(() => txt.classList.remove('error'), 200);
           } else {
-              showCorrectAnswer();
+              markCorrect(idx);
           }
       }
   }
-  function showCorrectAnswer() {
-      const txt = document.getElementById(`txt${answerIx}`);
-      const isError = txt.value.indexOf('?') >= 0;
-      txt.classList.add(isError ? 'error' : 'ok');
-      if (isError || wasIncorrectInput) {
-          txt.value = ow[answerIx];
+  // mark a specific blank as correct and advance if all done
+  function markCorrect(idx) {
+      const txt = document.getElementById(`txt${idx}`);
+      txt.classList.add('ok');
+      txt.readOnly = true;
+      correctThisRound++;
+      if (fieldHadError[idx]) {
           totalError++;
       } else {
           totalOk++;
       }
-      txt.readOnly = true;
       showProgress();
-      setTimeout(function() {
-         txt.classList.remove('ok', 'error');
-         next();
-     }, isError ? 1000 : 300);
+      // if all blanks filled advance
+      if (correctThisRound >= blanksIndices.length) {
+          setTimeout(next, 300);
+      }
+  }
+
+  function revealAnswer(idx) {
+      const txt = document.getElementById(`txt${idx}`);
+      txt.classList.add('error');
+      txt.value = ow[idx];
+      txt.readOnly = true;
+      totalError++;
+      showProgress();
+      // if this was one of the blanks, count it as done
+      if (blanksIndices.includes(idx)) {
+          correctThisRound++;
+          if (correctThisRound >= blanksIndices.length) {
+              setTimeout(next, 1000);
+          }
+      }
   }
   function showProgress() {
       document.getElementById('progress-ok').style.width = (totalOk / total * 100) + '%';
@@ -151,6 +195,17 @@
           input.addEventListener('input', onInput);
           input.addEventListener('keydown', onKeyDown);
       });
+      const slider = document.getElementById('difficulty-slider');
+      if (slider) {
+          slider.value = localStorage.difficulty || 1;
+          difficulty = parseInt(slider.value,10);
+          slider.addEventListener('input', (e) => {
+              difficulty = parseInt(e.target.value,10);
+              localStorage.difficulty = difficulty;
+              updateDifficultyDisplay();
+          });
+          updateDifficultyDisplay();
+      }
       document.querySelectorAll('.submit-with-return').forEach(check => {
           check.addEventListener('click', () => {
               if (localStorage.submitWithReturn) {
@@ -168,8 +223,20 @@
       document.querySelector('.start-page').style.display = 'flex';
       document.querySelector('.game-area').style.display = 'none';
   }
+
+  function updateDifficultyDisplay() {
+      const disp = document.getElementById('difficulty-value');
+      if (disp) {
+          // map 1..4 to descriptive Dutch words or numbers
+          const labels = ['1 (gemakkelijk)', '2', '3', '4 (moeilijk)'];
+          disp.textContent = labels[difficulty-1] || difficulty;
+      }
+  }
   function startGame() {
       const listKey = document.getElementById('wordlist-select').value;
+      // read difficulty again in case it changed on start page
+      difficulty = parseInt(document.getElementById('difficulty-slider').value,10) || 1;
+      localStorage.difficulty = difficulty;
       selectedList = WORDLISTS[listKey].data.map(item => [...item]);
       total = selectedList.length;
       totalOk = 0;
@@ -358,6 +425,23 @@
       border-radius: 4px;
       cursor: pointer;
   }
+  /* fixed slider at bottom of page */
+  .difficulty-control {
+      position: fixed;
+      bottom: 40px; /* above footer */
+      left: 0;
+      width: 100%;
+      padding: 0 10px;
+      color: #5A606A;
+      font-size: 14px;
+      background: rgba(40,43,51,0.9);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+  }
+  .difficulty-control input[type=range] {
+      flex: 1;
+  }
   .start-btn {
       font-size: 20px;
       padding: 12px 40px;
@@ -388,6 +472,7 @@
                 </select>
             </div>
             <button class="start-btn" onclick="startGame()">Start</button>
+            <!-- start page content ends here -->
         </div>
     </div>
     <div class="game-area">
@@ -422,6 +507,12 @@
     <div class="submit-with-return">⏎</div>
     <div class="footer">
         Typ "?" om het antwoord te zien. ⟨⟩ met ♡ door Antelle.
+    </div>
+    <!-- difficulty slider fixed to bottom -->
+    <div class="difficulty-control">
+        <label for="difficulty-slider">Moeilijkheid:</label>
+        <span id="difficulty-value">1</span>
+        <input type="range" id="difficulty-slider" min="1" max="4" value="1" />
     </div>
     </div>
 </body>
