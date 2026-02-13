@@ -158,6 +158,11 @@
       // if all blanks filled advance
       if (correctThisRound >= blanksIndices.length) {
           setTimeout(next, 300);
+      } else {
+          // move focus to next blank
+          const nextIdx = blanksIndices[correctThisRound];
+          const nextTxt = document.getElementById(`txt${nextIdx}`);
+          if (nextTxt) nextTxt.focus();
       }
   }
 
@@ -173,6 +178,10 @@
           correctThisRound++;
           if (correctThisRound >= blanksIndices.length) {
               setTimeout(next, 1000);
+          } else {
+              const nextIdx = blanksIndices[correctThisRound];
+              const nextTxt = document.getElementById(`txt${nextIdx}`);
+              if (nextTxt) nextTxt.focus();
           }
       }
   }
