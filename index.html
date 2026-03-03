@@ -356,13 +356,14 @@
   }
   .footer {
       /* improved contrast for help text */
-      color: #ABB2BE;
-      font-size: 12px;
+      color: #FFFFFF;              /* white for maximum contrast */
+      font-size: 14px;             /* slightly larger text */
       text-align: center;
       width: 100%;
-      padding: 10px 0;
-      /* increase opacity for readability */
-      opacity: 0.6;
+      padding: 12px 0;
+      opacity: 1;                  /* fully opaque */
+      background: rgba(0,0,0,0.4); /* subtle dark backdrop */
+      text-shadow: 0 0 4px rgba(0,0,0,0.5);
   }
   .submit-with-return {
       position: fixed;
