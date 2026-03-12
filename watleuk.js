@@ -341,5 +341,75 @@ window.WatLeukList = [
         "raadden",
         "geraden",
         {"en": "guess, advise", "de": "raten"}
+    ],
+    [
+        "rijden",
+        "reed",
+        "reden",
+        "gereden",
+        {"en": "ride", "de": "fahren"}
+    ],
+    [
+        "roepen",
+        "riep",
+        "riepen",
+        "geroepen",
+        {"en": "call", "de": "rufen"}
+    ],
+    [
+        "ruiken",
+        "rook",
+        "roken",
+        "geroken",
+        {"en": "smell", "de": "riechen"}
+    ],
+    [
+        "scheiden",
+        "scheidde",
+        "scheidden",
+        "gescheiden",
+        {"en": "separate, divorce", "de": "scheiden"}
+    ],
+    [
+        "schenken",
+        "schonk",
+        "schonken",
+        "geschonken",
+        {"en": "give (as gift)", "de": "schenken"}
+    ],
+    [
+        "schijnen",
+        "scheen",
+        "schenen",
+        "geschenen",
+        {"en": "shine, seem", "de": "scheinen"}
+    ],
+    [
+        "schrijven",
+        "schreef",
+        "schreven",
+        "geschreven",
+        {"en": "write", "de": "schreiben"}
+    ],
+    [
+        "slaan",
+        "sloeg",
+        "sloegen",
+        "geslagen",
+        {"en": "hit, beat", "de": "schlagen"}
+    ],
+    [
+        "slapen",
+        "sliep",
+        "sliepen",
+        "geslapen",
+        {"en": "sleep", "de": "schlafen"}
+    ],
+    [
+        "sluiten",
+        "sloot",
+        "sloten",
+        "gesloten",
+        {"en": "close", "de": "schließen"}
     ]
 ];
